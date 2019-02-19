@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
-import {Button} from 'reactstrap';
+import { Button } from 'semantic-ui-react';
 class App extends Component {
   render() {
     return (
@@ -12,7 +12,7 @@ class App extends Component {
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
-          <Button color="danger">shit!</Button>
+          <Button content="Primary" primary />
           <a
             className="App-link"
             href="https://reactjs.org"
