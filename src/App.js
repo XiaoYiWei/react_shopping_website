@@ -3,17 +3,15 @@ import { BrowserRouter, Route, Link } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
 import { Provider } from 'react-redux';
-import {
-  combineReducers
-} from 'redux-immutable';
+import { combineReducers } from 'redux-immutable';
 import Immutable from 'immutable';
-import {
-  createStore,
-  StoreCreator
-} from 'redux';
+import { createStore, StoreCreator } from 'redux';
 import { MenuComponent } from './share/menu/menuComponent';
-import loginReducer from './components/login/reducer'
-import FakeBtn from './share/testing/FakeBtn'
+import loginReducer from './components/login/reducer';
+import FakeBtn from './share/testing/FakeBtn';
+
+import LoginForm from './components/login/loginComponent';
+import { ToLoginButton } from './share/testing/btnToLogin';
 class App extends Component {
   store: StoreCreator;
 
@@ -21,13 +19,16 @@ class App extends Component {
     super();
     const initialState = Immutable.Map();
     const rootReducer = combineReducers({ loginReducer });
-    this.store = createStore(rootReducer, initialState,
-      window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__({
-        serialize: {
-          immutable: Immutable,
-          // refs: initialState
-        }
-      })
+    this.store = createStore(
+      rootReducer,
+      initialState,
+      window.__REDUX_DEVTOOLS_EXTENSION__ &&
+        window.__REDUX_DEVTOOLS_EXTENSION__({
+          serialize: {
+            immutable: Immutable
+            // refs: initialState
+          }
+        })
     );
   }
   render() {
@@ -36,26 +37,14 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <div>
-              <Route
-                render={(props) => <MenuComponent />}
-              />
+              <Route render={props => <MenuComponent />} />
             </div>
-            <div className="App">
-              <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                  Edit <code>src/App.js</code> and save to reload.
-                </p>
-                <FakeBtn></FakeBtn>
-                <a
-                  className="App-link"
-                  href="https://reactjs.org"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Learn React
-          </a>
-              </header>
+            <div>
+              <FakeBtn />
+              <ToLoginButton />
+            </div>
+            <div>
+              <Route path="/login" component={LoginForm} />
             </div>
           </div>
         </BrowserRouter>
