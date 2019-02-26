@@ -6,22 +6,14 @@ import {
   Header,
   Image,
   Message,
-  Segment
+  Segment,
+  Checkbox
 } from 'semantic-ui-react';
 import { withFormik, yupToFormErrors } from 'formik';
 import * as yup from 'yup'; // for everything
 
 const LoginForm = props => {
-  const {
-    values,
-    touched,
-    errors,
-    handleChange,
-    handleBlur,
-    handleSubmit
-  } = props;
-  const [userEmail, setUserEmail] = useState('');
-  const [userPwd, setUserPwd] = useState('');
+  const { values, touched, errors, handleSubmit } = props;
 
   return (
     <div className="login-form">
@@ -86,6 +78,16 @@ const LoginForm = props => {
                 <div className="input-feedback">{errors.userPwd}</div>
               )}
 
+              <Form.Field>
+                <Checkbox
+                  name="keepLogin"
+                  label="Remember me!"
+                  onChange={(e, { name, checked }) => {
+                    values.option.keepLogin = checked;
+                  }}
+                  checked={values.option.keepLogin}
+                />
+              </Form.Field>
               <Button color="teal" fluid size="large" type="submit">
                 Login
               </Button>
@@ -113,7 +115,13 @@ export default withFormik({
       .required('Password is required!')
     //.equal('1234', 'password is 1234')
   }),
-  mapPropsToValues: () => ({ userEmail: '', userPwd: '' }),
+  mapPropsToValues: () => ({
+    userEmail: '',
+    userPwd: '',
+    option: {
+      keepLogin: true
+    }
+  }),
   // Async Validation
   sleep: ms => new Promise(resolve => setTimeout(resolve, ms)),
   handleSubmit: (values, { setSubmitting }) => {
