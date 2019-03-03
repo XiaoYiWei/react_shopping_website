@@ -12,6 +12,7 @@ import FakeBtn from './share/testing/FakeBtn';
 
 import LoginForm from './components/login/loginComponent';
 import { ToLoginButton } from './share/testing/btnToLogin';
+import { ShopItemComponent } from './components/shopItem/shopItemComponent';
 class App extends Component {
   store: StoreCreator;
 
@@ -45,6 +46,7 @@ class App extends Component {
             </div>
             <div>
               <Route path="/login" component={LoginForm} />
+              <Route path="/" component={ShopItemComponent} />
             </div>
           </div>
         </BrowserRouter>
