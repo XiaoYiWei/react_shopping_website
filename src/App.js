@@ -13,6 +13,7 @@ import FakeBtn from './share/testing/FakeBtn';
 import LoginForm from './components/login/loginComponent';
 import { ToLoginButton } from './share/testing/btnToLogin';
 import { ShopItemComponent } from './components/shopItem/shopItemComponent';
+import { ToHomeButton } from './share/testing/btnToHome';
 class App extends Component {
   store: StoreCreator;
 
@@ -24,12 +25,12 @@ class App extends Component {
       rootReducer,
       initialState,
       window.__REDUX_DEVTOOLS_EXTENSION__ &&
-        window.__REDUX_DEVTOOLS_EXTENSION__({
-          serialize: {
-            immutable: Immutable
-            // refs: initialState
-          }
-        })
+      window.__REDUX_DEVTOOLS_EXTENSION__({
+        serialize: {
+          immutable: Immutable
+          // refs: initialState
+        }
+      })
     );
   }
   render() {
@@ -43,10 +44,11 @@ class App extends Component {
             <div>
               <FakeBtn />
               <ToLoginButton />
+             <ToHomeButton/>
             </div>
             <div>
               <Route path="/login" component={LoginForm} />
-              <Route path="/" component={ShopItemComponent} />
+              <Route exact path="/" component={ShopItemComponent} />
             </div>
           </div>
         </BrowserRouter>
