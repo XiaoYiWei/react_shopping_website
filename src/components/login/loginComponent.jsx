@@ -12,6 +12,7 @@ import {
 import { withFormik, yupToFormErrors } from 'formik';
 import * as yup from 'yup'; // for everything
 import { v4 as uuid } from 'uuid';
+import { getUser } from './../../api/fakeApi';
 
 const LoginForm = props => {
   const { values, touched, errors, handleSubmit } = props;
@@ -125,14 +126,13 @@ export default withFormik({
   }),
   // Async Validation
   handleSubmit: (values, { setSubmitting }) => {
-    const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
-
     setTimeout(() => {
-      alert(JSON.stringify(values, null, 2));
+      console.log(JSON.stringify(values, null, 2));
       setSubmitting(false);
     }, 1000);
 
-    sleep(3000).then(() => {
+    getUser(values.userEmail, values.userPwd).then(users => {
+      console.log('users loaded', users);
       localStorage.setItem('userEmail', values.userEmail);
       localStorage.setItem('token', uuid());
     });
