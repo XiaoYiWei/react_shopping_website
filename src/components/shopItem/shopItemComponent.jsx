@@ -1,20 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import {
-  Button,
-  Form,
-  Grid,
-  Header,
-  Image,
-  Message,
-  Segment,
-  Checkbox,
-  Container,
-  Icon
-} from 'semantic-ui-react';
+import { Button, Form, Grid, Header, Image, Message, Segment, Checkbox, Container, Icon } from 'semantic-ui-react';
 import { withFormik, yupToFormErrors } from 'formik';
 import * as yup from 'yup'; // for everything
 import PropTypes from 'process';
-import { shopItems } from './../../data/shopItems';
+import { shopItems } from '../../data/shopItems';
 
 const AddToChartButton = item => {
   return (
@@ -34,12 +23,7 @@ const itemCells = rowItems => {
       <Grid.Column width={4} key={'shopitem_column_' + item.itemId}>
         {item.itemName}
         <div>
-          <Image
-            src={'/img/' + item.image}
-            alt="product item"
-            size="medium"
-            rounded
-          />
+          <Image src={'/img/' + item.image} alt="product item" size="medium" rounded />
         </div>
         <div />
       </Grid.Column>
