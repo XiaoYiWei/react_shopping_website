@@ -1,0 +1,16 @@
+{
+  "extends": ["airbnb", "prettier"],
+  "plugins": ["react", "prettier"],
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true
+  },
+  "rules": {
+    "prettier/prettier": ["error"],
+    "linebreak-style": 0,
+    "generator-star-spacing": 0,
+    "space-before-function-paren": 0,
+    "implicit-arrow-linebreak": "off",
+    "arrow-parens": 0
+  }
+}

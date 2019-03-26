@@ -1,18 +1,12 @@
 import React, { useState } from 'react';
-import {
-  Button,
-  Form,
-  Grid,
-  Header,
-  Image,
-  Message,
-  Segment,
-  Checkbox
-} from 'semantic-ui-react';
+import loadable from '@loadable/component';
 import { withFormik, yupToFormErrors } from 'formik';
 import * as yup from 'yup'; // for everything
 import { v4 as uuid } from 'uuid';
-import { getUser } from './../../api/fakeApi';
+import { getUser } from '../../api/fakeApi';
+
+const { Button, Form, Grid, Header, Image, Message, Segment, Checkbox } = loadable.lib(() => import('semantic-ui-react'));
+const Moment = loadable.lib(() => import('moment'));
 
 const LoginForm = props => {
   const { values, touched, errors, handleSubmit } = props;
@@ -24,21 +18,20 @@ const LoginForm = props => {
       You can do same with CSS, the main idea is that all the elements up to the `Grid`
       below must have a height of 100%.
     */}
-      <style>{`
+      <style>
+        {`
       body > div,
       body > div > div,
       body > div > div > div.login-form {
         height: 100%;
       }
-    `}</style>
-      <Grid
-        textAlign="center"
-        style={{ height: '100%' }}
-        verticalAlign="middle"
-      >
+    `}
+      </style>
+      <Grid textAlign="center" style={{ height: '100%' }} verticalAlign="middle">
         <Grid.Column style={{ maxWidth: 450 }}>
           <Header as="h2" color="teal" textAlign="center">
-            <Image src="/logo.png" /> Log-in to your account
+            <Image src="/logo.png" />
+            Log-in to your account
           </Header>
           <Form
             size="large"
@@ -60,9 +53,7 @@ const LoginForm = props => {
                   values.userEmail = e.currentTarget.value;
                 }}
               />
-              {errors.userEmail && touched.userEmail && (
-                <div className="input-feedback">{errors.userEmail}</div>
-              )}
+              {errors.userEmail && touched.userEmail && <div className="input-feedback">{errors.userEmail}</div>}
 
               <Form.Input
                 fluid
@@ -76,9 +67,7 @@ const LoginForm = props => {
                   values.userPwd = e.currentTarget.value;
                 }}
               />
-              {errors.userPwd && touched.userPwd && (
-                <div className="input-feedback">{errors.userPwd}</div>
-              )}
+              {errors.userPwd && touched.userPwd && <div className="input-feedback">{errors.userPwd}</div>}
 
               <Form.Field>
                 <Checkbox
