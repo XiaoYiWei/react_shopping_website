@@ -3,13 +3,13 @@ import loadable from '@loadable/component';
 import { withFormik, yupToFormErrors } from 'formik';
 import * as yup from 'yup'; // for everything
 import { v4 as uuid } from 'uuid';
+import { Button, Form, Grid, Header, Image, Message, Segment, Checkbox } from 'semantic-ui-react';
 import { getUser } from '../../api/fakeApi';
 import LoginContext from './login-context';
 
 import UserEmail from './components/UserEmail';
 import './LoginComponent.scss';
 
-const { Button, Form, Grid, Header, Image, Message, Segment, Checkbox } = loadable.lib(() => import('semantic-ui-react'));
 const Moment = loadable.lib(() => import('moment'));
 
 const LoginForm = props => {
@@ -21,6 +21,7 @@ const LoginForm = props => {
   };
 
   const setUserPwd = password => {
+    console.info('password changed', password);
     setFieldValue('userPwd', password);
   };
   return (
@@ -33,15 +34,10 @@ const LoginForm = props => {
       }}
     >
       <div className="login-form">
-        {/*
-      Heads up! The styles below are necessary for the correct render of this example.
-      You can do same with CSS, the main idea is that all the elements up to the `Grid`
-      below must have a height of 100%.
-    */}
         <Grid textAlign="center" style={{ height: '100%' }} verticalAlign="middle">
           <Grid.Column style={{ maxWidth: 450 }}>
             <Header as="h2" color="teal" textAlign="center">
-              <Image src="/logo.png" />
+              {/* <Image src="/logo.png" /> */}
               Log-in to your account
             </Header>
             <Form
@@ -61,7 +57,7 @@ const LoginForm = props => {
                   name="userPwd"
                   error={errors.userPwd && touched.userPwd}
                   onChange={e => {
-                    values.userPwd = e.currentTarget.value;
+                    setUserPwd(e.currentTarget.value);
                   }}
                 />
                 {errors.userPwd && touched.userPwd && <div className="input-feedback">{errors.userPwd}</div>}

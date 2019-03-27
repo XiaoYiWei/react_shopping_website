@@ -4,7 +4,7 @@ import loadable from '@loadable/component';
 const { Form } = loadable.lib(() => import('semantic-ui-react'));
 
 const UserEmail = props => {
-  const { errors } = props;
+  const { errors, touched } = props;
   return (
     <div>
       <Form.Input
@@ -16,10 +16,12 @@ const UserEmail = props => {
         placeholder="E-mail address"
         error={errors.userEmail && touched.userEmail}
         onChange={e => {
-          values.userEmail = e.currentTarget.value;
+          // values.userEmail = e.currentTarget.value;
         }}
       />
       {errors.userEmail && touched.userEmail && <div className="input-feedback">{errors.userEmail}</div>}
     </div>
   );
 };
+
+export default UserEmail;

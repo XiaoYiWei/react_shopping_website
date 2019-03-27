@@ -12,6 +12,6 @@
     "space-before-function-paren": 0,
     "implicit-arrow-linebreak": "off",
     "arrow-parens": 0,
-    "no-console": ["error", { "allow": ["warn", "error"] }]
+    "no-console": ["error", { "allow": ["info", "warn", "error"] }]
   }
 }
