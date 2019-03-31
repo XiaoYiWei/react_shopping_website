@@ -1,10 +1,9 @@
 import React from 'react';
-import loadable from '@loadable/component';
+import { Form } from 'semantic-ui-react';
 
-const { Form } = loadable.lib(() => import('semantic-ui-react'));
-
-const UserEmail = props => {
-  const { errors, touched } = props;
+const UserEmail = React.memo(props => {
+  const { field, form } = props;
+  // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
   return (
     <div>
       <Form.Input
@@ -13,15 +12,18 @@ const UserEmail = props => {
         iconPosition="left"
         name="userEmail"
         focus
+        value={field.value}
         placeholder="E-mail address"
-        error={errors.userEmail && touched.userEmail}
+        error={form.errors.userEmail && form.touched.userEmail}
         onChange={e => {
-          // values.userEmail = e.currentTarget.value;
+          console.info('field', field);
+          console.info('form', form);
+          form.setFieldValue('userEmail', e.currentTarget.value);
         }}
       />
-      {errors.userEmail && touched.userEmail && <div className="input-feedback">{errors.userEmail}</div>}
+      {form.errors.userEmail && form.touched.userEmail && <div className="input-feedback">{form.errors.userEmail}</div>}
     </div>
   );
-};
+});
 
 export default UserEmail;
