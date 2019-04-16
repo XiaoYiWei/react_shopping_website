@@ -11,7 +11,7 @@ import FakeBtn from './share/testing/FakeBtn';
 
 import LoginForm from './components/login/LoginComponent';
 import { ToLoginButton } from './share/testing/btnToLogin';
-import { ShopItemComponent } from './components/shopItem/ShopItemComponent';
+import ShopItemComponent from './components/shopItem/ShopItemComponent';
 import { ToHomeButton } from './share/testing/btnToHome';
 
 class App extends Component {

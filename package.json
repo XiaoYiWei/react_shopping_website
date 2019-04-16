@@ -9,6 +9,7 @@
     "firebase": "^5.8.6",
     "formik": "^1.5.1",
     "history": "^4.7.2",
+    "immer": "^2.1.5",
     "immutable": "^4.0.0-rc.12",
     "moment": "^2.24.0",
     "node-sass": "^4.11.0",

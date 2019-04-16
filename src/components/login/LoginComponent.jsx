@@ -1,6 +1,6 @@
 import React, { useState, useReducer } from 'react';
 import loadable from '@loadable/component';
-import { Button, Form, Grid, Image, Message, Segment, Checkbox } from 'semantic-ui-react';
+import { Grid, Message } from 'semantic-ui-react';
 import './LoginComponent.scss';
 
 const FormHeader = loadable(() => import('./components/FormHeader'));
