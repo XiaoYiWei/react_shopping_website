@@ -32,6 +32,8 @@ const itemRow = rowItems => {
   return <Grid.Row>{itemCells(rowItems)}</Grid.Row>;
 };
 
+const loadCustomers = async draft => {};
+
 const ShopItemComponent = () => {
   const [items, setItems] = useState([]);
 
@@ -39,9 +41,9 @@ const ShopItemComponent = () => {
     console.info('effect!');
     setItems(shopItems);
 
-    let testData = {};
-    const loadedUser = produce(testData, async function(draft) {
-      draft.todos = await (await window.fetch('http://northwind.servicestack.net/customers.json')).json();
+    const testData = {};
+    const loadedUser = produce(testData, draft => {
+      draft.todos = window.fetch('http://northwind.servicestack.net/customers.json').json();
     });
     return () => {
       setItems([]);
