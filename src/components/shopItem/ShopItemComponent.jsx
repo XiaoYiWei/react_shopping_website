@@ -32,19 +32,26 @@ const itemRow = rowItems => {
   return <Grid.Row>{itemCells(rowItems)}</Grid.Row>;
 };
 
-const loadCustomers = async draft => {};
-
 const ShopItemComponent = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
     console.info('effect!');
-    setItems(shopItems);
+    // setItems(shopItems);
 
     const testData = {};
-    const loadedUser = produce(testData, draft => {
-      draft.todos = window.fetch('http://northwind.servicestack.net/customers.json').json();
-    });
+
+    (async () => {
+      const response = await window.fetch('http://northwind.servicestack.net/customers.json');
+      const customers = await produce(testData, async draft => {
+        draft.todos = (await response.json()).Customers;
+      });
+
+      setItems(shopItems);
+
+      console.info(customers.todos);
+    })();
+
     return () => {
       setItems([]);
       console.info('unmounted');

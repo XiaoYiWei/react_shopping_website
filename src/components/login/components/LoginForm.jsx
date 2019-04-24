@@ -1,9 +1,13 @@
 import React, { useState, useReducer, useCallback } from 'react';
 import loadable from '@loadable/component';
 import { withFormik, yupToFormErrors, FastField, Form } from 'formik';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
 import * as yup from 'yup'; // for everything
 import { v4 as uuid } from 'uuid';
 import { Button, Segment, Checkbox } from 'semantic-ui-react';
+import actionCreators from '../action';
 import { getUser } from '../../../api/fakeApi';
 
 const UserEmail = loadable(() => import('./UserEmail'));
@@ -30,7 +34,7 @@ const LoginForm = React.memo(props => {
   );
 });
 
-export default withFormik({
+const formikEnhancer = withFormik({
   validationSchema: yup.object().shape({
     userEmail: yup
       .string()
@@ -51,16 +55,25 @@ export default withFormik({
     }
   }),
   // Async Validation
-  handleSubmit: (values, { setSubmitting }) => {
-    setTimeout(() => {
-      console.info(JSON.stringify(values, null, 2));
-      setSubmitting(false);
-    }, 1000);
+  handleSubmit: (values, { props, setSubmitting }) => {
+    props.startLoginFlow(values.userEmail.split('@')[0], values.userPwd);
 
-    getUser(values.userEmail, values.userPwd).then(users => {
-      console.info('users loaded', users);
-      localStorage.setItem('userEmail', values.userEmail);
-      localStorage.setItem('token', uuid());
-    });
+    // setTimeout(() => {
+    //   console.info(JSON.stringify(values, null, 2));
+    //   setSubmitting(false);
+    // }, 1000);
+
+    // getUser(values.userEmail, values.userPwd).then(users => {
+    //   console.info('users loaded', users);
+    //   localStorage.setItem('userEmail', values.userEmail);
+    //   localStorage.setItem('token', uuid());
+    // });
   }
 })(LoginForm);
+
+const Login = connect(
+  null,
+  dispatch => bindActionCreators(actionCreators, dispatch)
+)(formikEnhancer);
+
+export default Login;
