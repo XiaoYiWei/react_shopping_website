@@ -1,3 +1,3 @@
-import { createSelector } from 'reselect'
+import { createSelector } from 'reselect';
 
-const userSelector=(state)=>state
+const userSelector = state => state;
