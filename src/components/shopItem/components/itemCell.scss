@@ -1,0 +1,14 @@
+.shopItem {
+  .actionBtnGroup {
+    height: 70px;
+    text-align: center;
+    visibility: hidden;
+    background-color: green;
+  }
+
+  &:hover {
+    .actionBtnGroup {
+      visibility: visible;
+    }
+  }
+}

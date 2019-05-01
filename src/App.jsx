@@ -11,7 +11,7 @@ import FakeBtn from './share/testing/FakeBtn';
 
 import LoginForm from './components/login/LoginComponent';
 import { ToLoginButton } from './share/testing/btnToLogin';
-import ShopItemComponent from './components/shopItem/ShopItemComponent';
+import ShopComponent from './components/shopItem/ShopComponent';
 import { ToHomeButton } from './share/testing/btnToHome';
 
 class App extends Component {
@@ -33,7 +33,7 @@ class App extends Component {
           </div>
           <div>
             <Route path="/login" component={LoginForm} />
-            <Route exact path="/" component={ShopItemComponent} />
+            <Route exact path="/" component={ShopComponent} />
           </div>
         </div>
       </BrowserRouter>

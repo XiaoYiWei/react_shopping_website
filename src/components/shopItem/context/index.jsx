@@ -6,13 +6,17 @@ const ShopContext = createContext();
 
 const initialState = {
   count: 10,
-  currentColor: '#bada55'
+  currentColor: '#bada55',
+  shopItems: []
 };
 
 const reducer = produce((draft, action) => {
   switch (action.type) {
     case 'reset':
       return initialState;
+    case 'SET_ITEMS':
+      draft.shopItems = action.payload;
+      break;
     case 'increment':
     case 'set-color':
     case 'decrement':
@@ -20,6 +24,7 @@ const reducer = produce((draft, action) => {
     default:
       return draft;
   }
+  return draft;
 });
 
 const ShopContextProvider = props => {
