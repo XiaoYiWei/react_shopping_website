@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Button, Icon } from 'semantic-ui-react';
 import { ShopContext } from '../context';
+import { increaseCount } from '../context/action';
 
 const ActionButtonGroup = styled.div`
   height: 70px;
@@ -12,10 +13,12 @@ const ActionButtonGroup = styled.div`
 `;
 
 const ActionButtonGroupComponent = ({ shopItem }) => {
-  // const { state, dispatch } = React.useContext(ShopContext);
+  const { dispatch } = React.useContext(ShopContext);
 
-  // const incrementAction = () => dispatch({ type: 'increment', id: shopItem._id });
-  const onButtonClicked = () => console.info('Clicked ShopItem', shopItem);
+  const onButtonClicked = () => {
+    console.info('Clicked ShopItem', shopItem);
+    dispatch(increaseCount(shopItem._id));
+  };
   return (
     <ActionButtonGroup className="actionBtnGroup">
       <Button icon onClick={onButtonClicked}>

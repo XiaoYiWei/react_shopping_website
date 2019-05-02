@@ -17,7 +17,13 @@ const reducer = produce((draft, action) => {
     case 'SET_ITEMS':
       draft.shopItems = action.payload;
       break;
-    case 'increment':
+    case 'INCREASE_COUNT': {
+      const targetItem = draft.shopItems.find(item => item._id === action.payload.itemId);
+      if (targetItem !== undefined) {
+        targetItem.index += 1;
+      }
+      break;
+    }
     case 'set-color':
     case 'decrement':
       return draft;

@@ -12,7 +12,7 @@ const ProductContent = styled.div`
   }
 `;
 
-const itemCells = ({ rowItems }) => {
+const itemCells = React.memo(({ rowItems }) => {
   const cells = [];
   rowItems.forEach(item => {
     cells.push(
@@ -28,6 +28,6 @@ const itemCells = ({ rowItems }) => {
     );
   });
   return cells;
-};
+});
 
 export default itemCells;
