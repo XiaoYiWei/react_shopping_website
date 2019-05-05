@@ -1,6 +1,5 @@
 import React from 'react';
 import ShopItemSummary from './ShopItemSummary';
-import './itemCell.scss';
 
 const itemCells = React.memo(({ rowItems }) => {
   const cells = [];
