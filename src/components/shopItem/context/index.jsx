@@ -21,7 +21,7 @@ const reducer = produce((draft, action) => {
       // 設定分頁的資料
       // 大致上是若pageIndex換算出來的資料位置比當前陣列還多,就增加陣列到指定的大小後再塞入
       // 若位置在當前陣列範圍內,則覆蓋資料
-      draft.shopItems.push(...action.payload);
+      draft.shopItems = [...action.payload.shopItems];
       break;
     case 'INCREASE_COUNT': {
       const targetItem = draft.shopItems.find(item => item._id === action.payload.itemId);

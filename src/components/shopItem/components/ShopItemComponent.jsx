@@ -50,11 +50,11 @@ const ShopItemComponent = () => {
           prevItem={{ content: <Icon name="angle left" />, icon: true }}
           nextItem={{ content: <Icon name="angle right" />, icon: true }}
           onPageChange={handlePaginationChange}
-          totalPages={state.shopItems / 10}
+          totalPages={shopItems.length / 10}
         />
       </Container>
     );
-  }, [state.shopItems, pageIndex]);
+  }, [state.shopItems, shopItems, pageIndex]);
 };
 
 export default ShopItemComponent;
