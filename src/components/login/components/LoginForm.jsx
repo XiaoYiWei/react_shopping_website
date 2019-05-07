@@ -1,19 +1,15 @@
-import React, { useState, useReducer, useCallback } from 'react';
+import React from 'react';
 import loadable from '@loadable/component';
-import { withFormik, yupToFormErrors, FastField, Form } from 'formik';
+import { withFormik, FastField, Form } from 'formik';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
 import * as yup from 'yup'; // for everything
-import { v4 as uuid } from 'uuid';
-import { Button, Segment, Checkbox } from 'semantic-ui-react';
+import { Button, Segment } from 'semantic-ui-react';
 import actionCreators from '../action';
-import { getUser } from '../../../api/fakeApi';
 
 const UserEmail = loadable(() => import('./UserEmail'));
 const UserPassword = loadable(() => import('./UserPassword'));
 const KeepLogin = loadable(() => import('./KeepLogin'));
-
 const LoginForm = React.memo(props => {
   const { handleSubmit } = props;
   return (
@@ -54,6 +50,7 @@ const formikEnhancer = withFormik({
       keepLogin: true
     }
   }),
+
   // Async Validation
   handleSubmit: (values, { props, setSubmitting }) => {
     props.startLoginFlow(values.userEmail.split('@')[0], values.userPwd);

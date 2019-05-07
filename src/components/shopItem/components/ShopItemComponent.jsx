@@ -1,12 +1,11 @@
 import React, { useMemo, useEffect, useContext, useState } from 'react';
 import { Grid, Container, Label, Icon, Pagination } from 'semantic-ui-react';
-import { shopItems } from '../../../data/shopItems';
 import ItemCells from './ItemCells';
 import { ShopContext } from '../context';
 import { setItems, setPageItems } from '../context/action';
+import { pageSize, getPagedItems, getItemsTotalCount } from '../uiLogic';
 
 const ShopItemComponent = () => {
-  const pageSize = 5;
   const { state, dispatch } = useContext(ShopContext);
   const [pageIndex, setPageIndex] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
@@ -16,23 +15,20 @@ const ShopItemComponent = () => {
     setPageIndex(activePage);
   }
 
-  async function loadPagedItems(pPageIndex) {
-    console.info(`loading page ${pPageIndex}`);
-    const source = shopItems;
-    const startIndex = pPageIndex * pageSize;
-    const pagedItems = source.slice(startIndex, startIndex + pageSize);
-    dispatch(setPageItems(pPageIndex, pagedItems));
-  }
-
   useEffect(() => {
     console.info('ShopItemComponent effect!');
+    function loadPagedItems(pPageIndex) {
+      console.info(`loading page ${pPageIndex}`);
+      const pagedItems = getPagedItems(pPageIndex);
+      dispatch(setPageItems(pPageIndex, pagedItems));
+    }
 
     // 這裡加入根據頁數取得對應的資料,並塞進ShopContext裡
     loadPagedItems(pageIndex - 1);
     return () => {
       console.info('ShopItemComponent unmounted');
     };
-  }, [pageIndex]);
+  }, [pageIndex, dispatch]);
 
   return useMemo(() => {
     return (
@@ -53,11 +49,11 @@ const ShopItemComponent = () => {
           prevItem={{ content: <Icon name="angle left" />, icon: true }}
           nextItem={{ content: <Icon name="angle right" />, icon: true }}
           onPageChange={handlePaginationChange}
-          totalPages={shopItems.length / pageSize}
+          totalPages={getItemsTotalCount.length / pageSize}
         />
       </Container>
     );
-  }, [state.shopItems, shopItems, pageIndex]);
+  }, [state.shopItems, pageIndex]);
 };
 
 export default ShopItemComponent;
