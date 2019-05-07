@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from 'react';
+import React from 'react';
 import loadable from '@loadable/component';
 import { Grid, Message } from 'semantic-ui-react';
 import './LoginComponent.scss';

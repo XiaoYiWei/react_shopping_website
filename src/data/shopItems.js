@@ -1,4 +1,3 @@
-import { v4 as uuid } from 'uuid';
 export const shopItems = [
   {
     _id: '5c7e40a09f26af68d20bd5b4',

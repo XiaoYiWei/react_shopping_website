@@ -15,7 +15,7 @@ const ShopItemSummary = React.memo(({ item }) => {
   // console.info(`ShopItemSummary rendered ${item._id}`);
 
   return (
-    <Grid.Column className="shopItem" width={4}>
+    <Grid.Column className="shopItem" width={3}>
       <ProductContent>
         {`${item.itemName}(${item.index})`}
         <div>

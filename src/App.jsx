@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import { combineReducers } from 'redux-immutable';
-import Immutable from 'immutable';
-import { createStore, StoreCreator } from 'redux';
+import { BrowserRouter, Route } from 'react-router-dom';
 import { MenuComponent } from './share/menu/menuComponent';
 import logo from './logo.svg';
 import './App.css';
