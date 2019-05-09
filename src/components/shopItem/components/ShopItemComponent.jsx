@@ -17,11 +17,11 @@ const ShopItemComponent = () => {
 
   useEffect(() => {
     console.info('ShopItemComponent effect!');
-    function loadPagedItems(pPageIndex) {
+    const loadPagedItems = pPageIndex => {
       console.info(`loading page ${pPageIndex}`);
       const pagedItems = getPagedItems(pPageIndex);
       dispatch(setPageItems(pPageIndex, pagedItems));
-    }
+    };
 
     // 這裡加入根據頁數取得對應的資料,並塞進ShopContext裡
     loadPagedItems(pageIndex - 1);
@@ -49,7 +49,7 @@ const ShopItemComponent = () => {
           prevItem={{ content: <Icon name="angle left" />, icon: true }}
           nextItem={{ content: <Icon name="angle right" />, icon: true }}
           onPageChange={handlePaginationChange}
-          totalPages={getItemsTotalCount.length / pageSize}
+          totalPages={getItemsTotalCount() / pageSize}
         />
       </Container>
     );
