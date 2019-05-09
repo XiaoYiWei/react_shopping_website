@@ -1,5 +1,7 @@
 import React from 'react';
-import ShopItemSummary from './ShopItemSummary';
+import loadable from '@loadable/component';
+
+const ShopItemSummary = loadable(() => import('./ShopItemSummary'));
 
 const itemCells = React.memo(({ rowItems }) => {
   const cells = [];

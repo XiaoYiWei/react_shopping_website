@@ -1,9 +1,11 @@
 import React, { useMemo, useEffect, useContext, useState } from 'react';
+import loadable from '@loadable/component';
 import { Grid, Container, Label, Icon, Pagination } from 'semantic-ui-react';
-import ItemCells from './ItemCells';
 import { ShopContext } from '../context';
 import { setItems, setPageItems } from '../context/action';
 import { pageSize, getPagedItems, getItemsTotalCount } from '../uiLogic';
+
+const ItemCells = loadable(() => import('./ItemCells'));
 
 const ShopItemComponent = () => {
   const { state, dispatch } = useContext(ShopContext);
