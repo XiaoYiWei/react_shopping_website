@@ -1,10 +1,7 @@
 import React from 'react';
-import loadable from '@loadable/component';
 import styled from 'styled-components';
 import { Grid, Image } from 'semantic-ui-react';
-
-const ActionButtonGroupComponent = loadable(() => import('./ActionButtonGroup'));
-const ActionButtonGroup = loadable(() => import('./ActionButtonGroup'));
+import { ActionButtonGroupComponent, ActionButtonGroup } from './ActionButtonGroup';
 
 const ProductContent = styled.div`
   &:hover {
